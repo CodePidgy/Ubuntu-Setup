@@ -120,6 +120,6 @@ for extension in extensions:
 print_heading("DCONF", 2)
 
 for path, key, value in extract_setting(json.load(open("virtuos/data/dconf.json"))):
-    subprocess.call(f"gsettings set {path} {key} {value}")
+    os.system(f"gsettings set {path} {key} {value}")
 
     print(f"gsettings set {path} {key} {value}\n")

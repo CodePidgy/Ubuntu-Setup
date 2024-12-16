@@ -17,4 +17,4 @@ cli = [
     "zsh",
 ]
 
-subprocess.call(["sudo", "apt", "install", "-y", " ".join(cli)])
+subprocess.call(["sudo", "apt", "install", "-y"] + cli)
