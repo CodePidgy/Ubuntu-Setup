@@ -1,6 +1,17 @@
 # system imports --------------------------------------------------------------------------------- #
 import json
+import os
 import subprocess
+
+
+extensions = [
+    7,  # Drive Menu
+    1160,  # Dash to Panel
+    3193,  # Blur My Shell
+    3843,  # Just Perfection
+    5547,  # Custom Accent Colors
+    6682,  # Astra Monitor
+]
 
 
 def extract_setting(obj, current_path=""):
@@ -32,9 +43,64 @@ def extract_setting(obj, current_path=""):
         yield parent_path, key, obj
 
 
-with open("virtuos/data/dconf.json", "r") as file:
-    settings = json.load(file)
+def install_extension(id):
+    print("Fetching extension metadata", end="")
 
-for path, key, value in extract_setting(settings):
+    metadata = json.loads(
+        subprocess.check_output(
+            ["curl", "-s", f"https://extensions.gnome.org/extension-info/?pk={id}"],
+        )
+    )
+
+    print(".", end="")
+
+    uuid = metadata["uuid"].replace("@", "")
+    name = metadata["name"]
+
+    print("..", end="")
+
+    latest_extension_version = None
+    latest_shell_version = None
+
+    for key in list(metadata["shell_version_map"].keys()):
+        if latest_shell_version is None or metadata["shell_version_map"][key]["version"]:
+            latest_shell_version = key
+            latest_extension_version = metadata["shell_version_map"][key]["version"]
+
+    print("\tDone")
+
+    file = f"{uuid}.v{latest_extension_version}.shell-extension.zip"
+    url = f"https://extensions.gnome.org/extension-data/{file}"
+
+    print(f"Downloading {file}...", end="")
+
+    subprocess.call(
+        ["wget", "-P", "/tmp", url],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+
+    print("\tDone")
+
+    print(f"Installing {name}...", end="")
+
+    subprocess.call(["gnome-extensions", "install", f"/tmp/{file}"])
+
+    print("\tDone")
+
+    print(f"Removing {file}...", end="")
+
+    os.remove(f"/tmp/{file}")
+
+    print("\tDone")
+
+
+for extension in extensions:
+    install_extension(extension)
+
+    print()
+
+for path, key, value in extract_setting(json.load(open("virtuos/data/dconf.json"))):
     subprocess.call(f"gsettings set {path} {key} {value}")
+
     print(f"gsettings set {path} {key} {value}\n")
