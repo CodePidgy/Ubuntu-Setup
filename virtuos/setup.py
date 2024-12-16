@@ -1,8 +1,8 @@
 # system imports --------------------------------------------------------------------------------- #
 import os
 
+os.system("sudo apt update")
 
-cli = ["btop", "curl", "eza", "fzf", "git", "neofetch", "net-tools", "rar", "unrar", "unzip", "zip"]
-desktop = ["gparted"]
+desktop = ["dconf-editor", "gnome-tweaks", "gparted"]
 
-os.system(f"sudo apt install -y {' '.join(cli + desktop)}")
+os.system(f"sudo apt install -y {' '.join(desktop)}")
