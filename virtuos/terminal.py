@@ -1,5 +1,5 @@
 # system imports --------------------------------------------------------------------------------- #
-import os
+import subprocess
 
 
 cli = [
@@ -17,4 +17,4 @@ cli = [
     "zsh",
 ]
 
-os.system(f"sudo apt install -y {' '.join(cli)}")
+subprocess.call(["sudo", "apt", "install", "-y", " ".join(cli)])
