@@ -1,0 +1,176 @@
+{
+    "org": {
+        "gnome": {
+            "desktop": {
+                "app-folders": {
+                    "folder-children": ["System", "Utility"],
+                    "folders": {
+                        "System": {
+                            "apps": [
+                                "org.gnome.Calculator.desktop",
+                                "org.gnome.clocks.desktop",
+                                "org.gnome.DiskUtility.desktop",
+                                "org.gnome.Evince.desktop",
+                                "org.gnome.Extensions.desktop",
+                                "org.gnome.FileRoller.desktop",
+                                "org.gnome.Nautilus.desktop",
+                                "org.gnome.Loupe.desktop",
+                                "org.gnome.Settings.desktop",
+                                "org.gnome.Software.desktop",
+                                "org.gnome.SystemMonitor.desktop",
+                                "org.gnome.TextEditor.desktop",
+                                "org.gnome.tweaks.desktop"
+                            ],
+                            "name": "System"
+                        },
+                        "Utility": {
+                            "apps": [
+                                "Alacritty.desktop",
+                                "btop.desktop",
+                                "ca.desrt.dconf-editor.desktop",
+                                "com.dropbox.Client.desktop",
+                                "com.mattjakeman.ExtensionManager.desktop",
+                                "gparted.desktop"
+                            ],
+                            "name": "Utility"
+                        }
+                    }
+                }
+            },
+            "input-sources": {
+                "sources": ["('xkb', 'us')"]
+            },
+            "interface": {
+                "clock-format": "12h",
+                "color-scheme": "prefer-dark",
+                "clock-show-weekday": true,
+                "enable-hot-corners": false,
+                "show-battery-percentage": true
+            },
+            "wm": {
+                "keybindings": {
+                    "switch-applications": [],
+                    "switch-applications-backward": [],
+                    "switch-windows": [ "<Alt>Tab" ],
+                    "switch-windows-backward": [ "<Shift><Alt>Tab" ]
+                },
+                "preferences": {
+                    "button-layout": "menu:minimize,maximize,close",
+                    "num-workspaces": 1
+                }
+            },
+            "nautilus": {
+                "preferences": {
+                    "default-folder-viewer": "list-view"
+                }
+            },
+            "mutter": {
+                "center-new-windows": true
+            },
+            "settings-daemon": {
+                "plugins": {
+                    "color": {
+                        "night-light-enabled": false,
+                        "night-light-schedule-automatic": true,
+                        "night-light-schedule-from": 18.0,
+                        "night-light-schedule-to": 6.0
+                    },
+                    "media-keys": {
+                        "custom-keybindings": {
+                            "_": [
+                                "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+                            ],
+                            "custom0": {
+                                "binding": "<Primary><Alt>t",
+                                "command": "alacritty",
+                                "name": "Open Terminal"
+                            }
+                        }
+                    }
+                },
+                "power": {
+                    "power-button-action": "interactive",
+                    "sleep-inactive-ac-timeout": 3600
+                }
+            },
+            "shell": {
+                "app-picker-layout": [
+                    "{'System': <{'position': <0>}>}",
+                    "{'Utility': <{'position': <1>}>}"
+                ],
+                "disable-user-extensions": false,
+                "enabled-extensions": [
+                    "appindicatorsupport@rgcjonas.gmail.com",
+                    "blur-my-shell@aunetx",
+                    "monitor@astraext.github.io",
+                    "custom-accent-colors@demiskp",
+                    "dash-to-panel@jderose9.github.com",
+                    "just-perfection-desktop@just-perfection",
+                    "drive-menu@gnome-shell-extensions.gcampax.github.com",
+                    "Vitals@CoreCoding.com",
+                    "user-theme@gnome-shell-extensions.gcampax.github.com"
+                ],
+                "favorite-apps": [
+                    "org.gnome.Nautilus.desktop",
+                    "firefox.desktop",
+                    "discord.desktop",
+                    "thunderbird.desktop",
+                    "code.desktop",
+                    "com.axosoft.GitKraken.desktop"
+                ],
+                "remember-mount-password": true,
+                "extensions": {
+                    "astra-monitor": {
+                        "headers-height": 26,
+                        "memory-update": 1.0,
+                        "network-update": 1.0,
+                        "panel-box": "left",
+                        "processor-gpu": false,
+                        "processor-update": 1.0,
+                        "storage-header-graph": true,
+                        "storage-update": 1.0
+                    },
+                    "custom-accent-colors": {
+                        "accent-color": "red",
+                        "theme-shell": true
+                    },
+                    "dash-to-panel": {
+                        "animate-appicon-hover": true,
+                        "appicon-margin": 4,
+                        "leftbox-padding": 0,
+                        "panel-element-position": "{'0': [{ 'element': 'leftBox', 'visible': true, 'position': 'stackedTL' }, { 'element': 'showAppsButton', 'visible': true, 'position': 'stackedBR' }, { 'element': 'activitiesButton', 'visible': false, 'position': 'stackedTL' }, { 'element': 'taskbar', 'visible': true, 'position': 'centerMonitor' }, { 'element': 'centerBox', 'visible': true, 'position': 'stackedBR' }, { 'element': 'rightBox', 'visible': true, 'position': 'stackedBR' }, { 'element': 'dateMenu', 'visible': true, 'position': 'stackedBR' }, { 'element': 'systemMenu', 'visible': true, 'position': 'stackedBR' }, { 'element': 'desktopButton', 'false': true, 'position': 'stackedBR' }], '1': [{ 'element': 'leftBox', 'visible': true, 'position': 'stackedTL' }, { 'element': 'showAppsButton', 'visible': true, 'position': 'stackedBR' }, { 'element': 'activitiesButton', 'visible': false, 'position': 'stackedTL' }, { 'element': 'taskbar', 'visible': true, 'position': 'centerMonitor' }, { 'element': 'centerBox', 'visible': true, 'position': 'stackedBR' }, { 'element': 'rightBox', 'visible': true, 'position': 'stackedBR' }, { 'element': 'dateMenu', 'visible': true, 'position': 'stackedBR' }, { 'element': 'systemMenu', 'visible': true, 'position': 'stackedBR' }, { 'element': 'desktopButton', 'false': true, 'position': 'stackedBR' }]}",
+                        "show-apps-icon-side-padding": 4,
+                        "trans-dynamic-anim-target": 0.60,
+                        "trans-dynamic-behavior": "MAXIMIZED_WINDOWS",
+                        "trans-panel-opacity": 0.0,
+                        "trans-use-custom-opacity": true,
+                        "trans-use-dynamic-opacity": true,
+                        "tray-padding": 4
+                    },
+                    "just-perfection": {
+                        "accessibility-menu": false,
+                        "keyboard-layout": false,
+                        "startup-status": 0,
+                        "window-demands-attention-focus": true,
+                        "workspace": false,
+                        "workspace-peek": false,
+                        "world-clock": false
+                    },
+                    "user-theme": {
+                        "name": "Custom-Accent-Colors"
+                    }
+                }
+            }
+        },
+        "gtk": {
+            "gtk4": {
+                "settings": {
+                    "file-chooser": {
+                        "show-hidden": true,
+                        "view-type": "list"
+                    }
+                }
+            }
+        }
+    }
+}
