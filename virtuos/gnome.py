@@ -4,16 +4,7 @@ import os
 import subprocess
 
 
-extensions = [
-    7,  # Drive Menu
-    1160,  # Dash to Panel
-    3193,  # Blur My Shell
-    3843,  # Just Perfection
-    5547,  # Custom Accent Colors
-    6682,  # Astra Monitor
-]
-
-
+# methods ---------------------------------------------------------------------------------------- #
 def extract_setting(obj, current_path=""):
     if isinstance(obj, dict):
         # Check for '_' key to handle value at the parent path
@@ -95,10 +86,38 @@ def install_extension(id):
     print("\tDone")
 
 
+def print_heading(text, level):
+    terminal_width = os.get_terminal_size().columns - (len(text) + 2)
+    segment = "=" if level == 1 else "-" if level == 2 else "-"
+    left = "".join([segment for _ in range(terminal_width // 2)])
+    right = "".join([segment for _ in range(terminal_width // 2)])
+
+    if terminal_width % 2 != 0:
+        right += segment
+
+    print(f"{left} {text} {right}")
+
+
+# scripts ---------------------------------------------------------------------------------------- #
+print_heading("GNOME", 1)
+
+extensions = [
+    7,  # Drive Menu
+    1160,  # Dash to Panel
+    3193,  # Blur My Shell
+    3843,  # Just Perfection
+    5547,  # Custom Accent Colors
+    6682,  # Astra Monitor
+]
+
+print_heading("Extensions", 2)
+
 for extension in extensions:
     install_extension(extension)
 
     print()
+
+print_heading("DCONF", 2)
 
 for path, key, value in extract_setting(json.load(open("virtuos/data/dconf.json"))):
     subprocess.call(f"gsettings set {path} {key} {value}")
