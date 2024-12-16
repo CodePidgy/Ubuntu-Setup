@@ -1,9 +1,9 @@
 # system imports --------------------------------------------------------------------------------- #
 import json
-import os
+import subprocess
 
 
-def extract_data(obj, current_path=""):
+def extract_setting(obj, current_path=""):
     if isinstance(obj, dict):
         # Check for '_' key to handle value at the parent path
         if "_" in obj:
@@ -18,7 +18,7 @@ def extract_data(obj, current_path=""):
                 continue  # Skip the '_' key as it's already processed
 
             new_path = f"{current_path}.{key}" if current_path else key
-            yield from extract_data(value, new_path)
+            yield from extract_setting(value, new_path)
     else:
         # The value is at the leaf node, key is the last part of the path
         key = current_path.split(".")[-1]
@@ -35,6 +35,6 @@ def extract_data(obj, current_path=""):
 with open("virtuos/data/dconf.json", "r") as file:
     settings = json.load(file)
 
-for path, key, value in extract_data(settings):
-    os.system(f"gsettings set {path} {key} {value}")
+for path, key, value in extract_setting(settings):
+    subprocess.call(f"gsettings set {path} {key} {value}")
     print(f"gsettings set {path} {key} {value}\n")

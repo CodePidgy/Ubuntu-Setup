@@ -1,8 +1,8 @@
 # system imports --------------------------------------------------------------------------------- #
-import os
+import subprocess
 
-os.system("sudo apt update")
+subprocess.call("sudo apt update")
 
 desktop = ["dconf-editor", "gnome-shell-extension-manager", "gnome-tweaks", "gparted"]
 
-os.system(f"sudo apt install -y {' '.join(desktop)}")
+subprocess.call(f"sudo apt install -y {' '.join(desktop)}")
