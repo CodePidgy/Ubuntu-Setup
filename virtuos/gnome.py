@@ -50,13 +50,8 @@ def install_extension(id):
 
     print("..", end="")
 
-    latest_extension_version = None
-    latest_shell_version = None
-
-    for key in list(metadata["shell_version_map"].keys()):
-        if latest_shell_version is None or metadata["shell_version_map"][key]["version"]:
-            latest_shell_version = key
-            latest_extension_version = metadata["shell_version_map"][key]["version"]
+    latest_shell_version = 46
+    latest_extension_version = metadata["shell_version_map"][str(latest_shell_version)]["version"]
 
     print("\tDone")
 
