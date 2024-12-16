@@ -102,11 +102,12 @@
                 "enabled-extensions": [
                     "appindicatorsupport@rgcjonas.gmail.com",
                     "blur-my-shell@aunetx",
-                    "monitor@astraext.github.io",
                     "custom-accent-colors@demiskp",
                     "dash-to-panel@jderose9.github.com",
-                    "just-perfection-desktop@just-perfection",
+                    "ding@rastersoft.com",
                     "drive-menu@gnome-shell-extensions.gcampax.github.com",
+                    "just-perfection-desktop@just-perfection",
+                    "monitor@astraext.github.io",
                     "Vitals@CoreCoding.com",
                     "user-theme@gnome-shell-extensions.gcampax.github.com"
                 ],
@@ -146,6 +147,9 @@
                         "trans-use-custom-opacity": true,
                         "trans-use-dynamic-opacity": true,
                         "tray-padding": 4
+                    },
+                    "ding": {
+                        "show-home": false
                     },
                     "just-perfection": {
                         "accessibility-menu": false,
