@@ -5,35 +5,6 @@ import subprocess
 
 
 # methods ---------------------------------------------------------------------------------------- #
-def extract_setting(obj, current_path=""):
-    if isinstance(obj, dict):
-        # Check for '_' key to handle value at the parent path
-        if "_" in obj:
-            # The key is the current key, path is the parent path
-            key = current_path.split(".")[-1] if current_path else ""
-            parent_path = ".".join(current_path.split(".")[:-1]) if "." in current_path else ""
-            yield parent_path, key, obj["_"]
-
-        # Traverse the remaining keys
-        for key, value in obj.items():
-            if key == "_":
-                continue  # Skip the '_' key as it's already processed
-
-            new_path = f"{current_path}.{key}" if current_path else key
-            yield from extract_setting(value, new_path)
-    else:
-        # The value is at the leaf node, key is the last part of the path
-        key = current_path.split(".")[-1]
-        parent_path = ".".join(current_path.split(".")[:-1])
-
-        if isinstance(obj, bool):
-            obj = "true" if obj else "false"
-        elif isinstance(obj, list) or isinstance(obj, str):
-            obj = f'"{obj}"'
-
-        yield parent_path, key, obj
-
-
 def install_extension(id):
     print("Fetching extension metadata", end="")
 
@@ -45,7 +16,7 @@ def install_extension(id):
 
     print(".", end="")
 
-    uuid = metadata["uuid"].replace("@", "")
+    uuid = metadata["uuid"]
     name = metadata["name"]
 
     print("..", end="")
@@ -55,28 +26,36 @@ def install_extension(id):
 
     print("\tDone")
 
-    file = f"{uuid}.v{latest_extension_version}.shell-extension.zip"
+    file = f"{uuid.replace("@", "")}.v{latest_extension_version}.shell-extension.zip"
     url = f"https://extensions.gnome.org/extension-data/{file}"
 
+    print("Checking cache...", end="")
+
+    if not os.path.exists(f"/tmp/setup"):
+        os.makedirs(f"/tmp/setup")
+    else:
+        if os.path.exists(f"/tmp/setup/{file}"):
+            print("\tDone")
+            print(f"{name} is already installed")
+            return
+
+    print("\tDone")
     print(f"Downloading {file}...", end="")
 
     subprocess.call(
-        ["wget", "-P", "/tmp", url],
+        ["wget", "-P", "/tmp/setup", url],
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
 
     print("\tDone")
-
     print(f"Installing {name}...", end="")
 
-    subprocess.call(["gnome-extensions", "install", f"/tmp/{file}"])
-
-    print("\tDone")
-
-    print(f"Removing {file}...", end="")
-
-    os.remove(f"/tmp/{file}")
+    subprocess.call(
+        ["gnome-extensions", "install", f"/tmp/setup/{file}"],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
 
     print("\tDone")
 
@@ -111,10 +90,3 @@ for extension in extensions:
     install_extension(extension)
 
     print()
-
-print_heading("DCONF", 2)
-
-for path, key, value in extract_setting(json.load(open("virtuos/data/dconf.json"))):
-    os.system(f"gsettings set {path} {key} {value}")
-
-    print(f"gsettings set {path} {key} {value}\n")
