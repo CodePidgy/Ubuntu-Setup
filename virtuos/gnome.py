@@ -90,3 +90,8 @@ for extension in extensions:
     install_extension(extension)
 
     print()
+
+print_heading("DCONF", 2)
+
+os.system("dconf load / < data/system.ini")
+os.system("dconf load / < data/extensions.ini")
