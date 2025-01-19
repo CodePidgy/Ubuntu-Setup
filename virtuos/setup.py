@@ -3,6 +3,7 @@ import subprocess
 
 subprocess.call(["sudo", "apt", "update"])
 subprocess.call(["sudo", "apt", "upgrade", "-y"])
+subprocess.call(["sudo", "apt", "autoremove", "-y"])
 
 desktop = ["dconf-editor", "gnome-shell-extension-manager", "gnome-tweaks", "gparted"]
 
