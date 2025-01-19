@@ -2,7 +2,7 @@
 import subprocess
 
 subprocess.call(["sudo", "apt", "update"])
-subprocess.call(["sudo", "apt", "upgrade"])
+subprocess.call(["sudo", "apt", "upgrade", "-y"])
 
 desktop = ["dconf-editor", "gnome-shell-extension-manager", "gnome-tweaks", "gparted"]
 
