@@ -14,6 +14,7 @@ def print_heading(text):
 
     print(f"{left} {text} {right}")
 
+
 def print_subheading(text):
     terminal_width = os.get_terminal_size().columns - (len(text) + 2)
     segment = "-"
