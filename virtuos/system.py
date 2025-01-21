@@ -1,16 +1,20 @@
 # system imports --------------------------------------------------------------------------------- #
-import subprocess
+import os
 
 # local imports ---------------------------------------------------------------------------------- #
 from utils import print_subheading
 
 # script ----------------------------------------------------------------------------------------- #
 print_subheading("Update")
-subprocess.call(["sudo", "apt", "update"])
-subprocess.call(["sudo", "apt", "upgrade", "-y"])
-subprocess.call(["sudo", "apt", "autoremove", "-y"])
-subprocess.call(["sudo", "systemctl", "daemon-reload"])
+os.system("sudo apt update")
+os.system("sudo apt upgrade -y")
+os.system("sudo apt autoremove -y")
+os.system("sudo systemctl daemon-reload")
 
 print_subheading("System Apps")
 desktop = ["dconf-editor", "gnome-shell-extension-manager", "gnome-tweaks", "gparted"]
-subprocess.call(["sudo", "apt", "install", "-y"] + desktop)
+os.system("sudo apt install -y " + " ".join(desktop))
+
+print("Loading DCONF...", end="")
+os.system("dconf load / < data/system.ini")
+print("\tDone")
