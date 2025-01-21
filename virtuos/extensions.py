@@ -79,5 +79,5 @@ for extension in extensions:
     print()
 
 print("Loading DCONF...", end="")
-os.system("dconf load / < data/system.ini")
+os.system("dconf load / < data/extensions.ini")
 print("\tDone")
