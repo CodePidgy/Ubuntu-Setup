@@ -1,13 +1,16 @@
 # system imports --------------------------------------------------------------------------------- #
+import os
 import subprocess
 
-subprocess.call(["sudo", "apt", "update"])
-subprocess.call(["sudo", "apt", "upgrade", "-y"])
-subprocess.call(["sudo", "apt", "autoremove", "-y"])
+# local imports ---------------------------------------------------------------------------------- #
+from utils import print_heading
 
-desktop = ["dconf-editor", "gnome-shell-extension-manager", "gnome-tweaks", "gparted"]
-
-subprocess.call(["sudo", "apt", "install", "-y"] + desktop)
+# script ----------------------------------------------------------------------------------------- #
+print_heading("System")
+subprocess.call(["python3", "virtuos/system.py"])
+print_heading("Terminal")
 subprocess.call(["python3", "virtuos/terminal.py"])
-subprocess.call(["stow", "-d", "dotfiles", "-t", "~/"])
+print_heading("Dotfiles")
+subprocess.call(["stow", "-d", "dotfiles", "-t", "$HOME", "."])
+print_heading("GNOME")
 subprocess.call(["python3", "virtuos/gnome.py"])

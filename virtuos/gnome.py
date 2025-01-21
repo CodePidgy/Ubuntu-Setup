@@ -3,6 +3,9 @@ import json
 import os
 import subprocess
 
+# local imports ---------------------------------------------------------------------------------- #
+from utils import print_subheading
+
 
 # methods ---------------------------------------------------------------------------------------- #
 def install_extension(id):
@@ -60,21 +63,8 @@ def install_extension(id):
     print("\tDone")
 
 
-def print_heading(text, level):
-    terminal_width = os.get_terminal_size().columns - (len(text) + 2)
-    segment = "=" if level == 1 else "-" if level == 2 else "-"
-    left = "".join([segment for _ in range(terminal_width // 2)])
-    right = "".join([segment for _ in range(terminal_width // 2)])
-
-    if terminal_width % 2 != 0:
-        right += segment
-
-    print(f"{left} {text} {right}")
-
-
-# scripts ---------------------------------------------------------------------------------------- #
-print_heading("GNOME", 1)
-
+# script ----------------------------------------------------------------------------------------- #
+print_subheading("Extensions")
 extensions = [
     7,  # Drive Menu
     1160,  # Dash to Panel
@@ -83,15 +73,11 @@ extensions = [
     5547,  # Custom Accent Colors
     6682,  # Astra Monitor
 ]
-
-print_heading("Extensions", 2)
-
 for extension in extensions:
     install_extension(extension)
 
     print()
 
-print_heading("DCONF", 2)
-
+print_subheading("DCONF")
 os.system("dconf load / < data/system.ini")
 os.system("dconf load / < data/extensions.ini")

@@ -11,6 +11,7 @@ cli = [
     "neofetch",
     "net-tools",
     "rar",
+    "stow",
     "unrar",
     "unzip",
     "zip",

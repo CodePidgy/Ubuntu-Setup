@@ -37,9 +37,6 @@
                     }
                 }
             },
-            "input-sources": {
-                "sources": ["('xkb', 'us')"]
-            },
             "interface": {
                 "clock-format": "12h",
                 "color-scheme": "prefer-dark",
@@ -48,14 +45,7 @@
                 "show-battery-percentage": true
             },
             "wm": {
-                "keybindings": {
-                    "switch-applications": [],
-                    "switch-applications-backward": [],
-                    "switch-windows": [ "<Alt>Tab" ],
-                    "switch-windows-backward": [ "<Shift><Alt>Tab" ]
-                },
                 "preferences": {
-                    "button-layout": "menu:minimize,maximize,close",
                     "num-workspaces": 1
                 }
             },
