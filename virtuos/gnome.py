@@ -4,7 +4,7 @@ import os
 import subprocess
 
 # local imports ---------------------------------------------------------------------------------- #
-from utils import print_subheading
+from ..utils import print_subheading
 
 
 # methods ---------------------------------------------------------------------------------------- #

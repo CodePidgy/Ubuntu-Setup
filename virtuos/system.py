@@ -2,7 +2,7 @@
 import subprocess
 
 # local imports ---------------------------------------------------------------------------------- #
-from utils import print_subheading
+from ..utils import print_subheading
 
 # script ----------------------------------------------------------------------------------------- #
 print_subheading("Update")

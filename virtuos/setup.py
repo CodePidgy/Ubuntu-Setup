@@ -3,7 +3,7 @@ import os
 import subprocess
 
 # local imports ---------------------------------------------------------------------------------- #
-from utils import print_heading
+from ..utils import print_heading
 
 # script ----------------------------------------------------------------------------------------- #
 print_heading("System")
