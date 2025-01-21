@@ -7,6 +7,8 @@ from utils import print_heading
 # script ----------------------------------------------------------------------------------------- #
 print_heading("System")
 subprocess.call(["python3", "virtuos/system.py"])
+print_heading("User")
+subprocess.call(["python3", "virtuos/user.py"])
 print_heading("Terminal")
 subprocess.call(["python3", "virtuos/terminal.py"])
 print_heading("Dotfiles")
