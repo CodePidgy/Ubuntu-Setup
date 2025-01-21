@@ -2,6 +2,7 @@
 import subprocess
 
 
+# script ----------------------------------------------------------------------------------------- #
 cli = [
     "btop",
     "curl",
@@ -17,5 +18,4 @@ cli = [
     "zip",
     "zsh",
 ]
-
 subprocess.call(["sudo", "apt", "install", "-y"] + cli)
