@@ -1,8 +1,11 @@
 # system imports --------------------------------------------------------------------------------- #
-import subprocess
+import os
 
+# local imports ---------------------------------------------------------------------------------- #
+from utils import print_subheading
 
 # script ----------------------------------------------------------------------------------------- #
+print_subheading("CLI Tools")
 cli = [
     "btop",
     "curl",
@@ -18,4 +21,8 @@ cli = [
     "zip",
     "zsh",
 ]
-subprocess.call(["sudo", "apt", "install", "-y"] + cli)
+os.system(f"sudo apt install -y {' '.join(cli)}")
+
+print("Removing app shortcuts...", end="")
+os.system("sudo rm -f /usr/share/applications/btop.desktop")
+print("\tDone")
