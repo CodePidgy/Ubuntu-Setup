@@ -1,17 +1,20 @@
 # system imports --------------------------------------------------------------------------------- #
-import subprocess
+import os
 
 # local imports ---------------------------------------------------------------------------------- #
-from utils import print_heading
+from utils import print_heading, print_subheading
 
 # script ----------------------------------------------------------------------------------------- #
 print_heading("System")
-subprocess.call(["python3", "virtuos/system.py"])
+os.system("python3 virtuos/system.py")
 print_heading("User")
-subprocess.call(["python3", "virtuos/user.py"])
+os.system("python3 virtuos/user.py")
 print_heading("Terminal")
-subprocess.call(["python3", "virtuos/terminal.py"])
+os.system("python3 virtuos/terminal.py")
 print_heading("Dotfiles")
-subprocess.call(["python3", "virtuos/dotfiles.py"])
+os.system("python3 virtuos/dotfiles.py")
 print_heading("GNOME")
-subprocess.call(["python3", "virtuos/extensions.py"])
+os.system("python3 virtuos/extensions.py")
+print_heading("Apps")
+print_subheading("Snap")
+os.system("python3 virtuos/apps/snap.py")
