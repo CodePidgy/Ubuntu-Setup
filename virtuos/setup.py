@@ -2,7 +2,7 @@
 import os
 
 # local imports ---------------------------------------------------------------------------------- #
-from utils import print_heading, print_subheading
+from utils import print_heading
 
 # script ----------------------------------------------------------------------------------------- #
 print_heading("System")
