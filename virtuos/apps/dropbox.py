@@ -32,3 +32,7 @@ print("\tDone")
 
 os.system(f"wget {url}/{file} -O $HOME/Downloads/{file}")
 os.system(f"sudo dpkg -i $HOME/Downloads/{file}")
+
+print("Disabling integration...", end="")
+os.system("sudo mv /usr/lib/x86_64-linux-gnu/nautilus/extensions-4/libnautilus-dropbox.so{,.bak}")
+print("\tDone")
