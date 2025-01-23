@@ -2,5 +2,5 @@
 import os
 
 # script ----------------------------------------------------------------------------------------- #
-apps = ["gparted", "timeshift"]
+apps = ["dotnet-sdk-8.0", "gparted", "timeshift"]
 os.system("sudo apt install -y " + " ".join(apps))
