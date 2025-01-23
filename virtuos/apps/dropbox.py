@@ -34,5 +34,5 @@ print("Downloading Dropbox...", end="")
 os.system(f"wget {url}/{file} -O $HOME/Downloads/{file}")
 
 print("Installing Dropbox...", end="")
-os.system(f"sudo apt install $HOME/Downloads/{file}")
+os.system(f"sudo dpkg -i $HOME/Downloads/{file}")
 
