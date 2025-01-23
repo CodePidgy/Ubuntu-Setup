@@ -8,5 +8,7 @@ from utils import print_heading, print_subheading
 print_heading("Apps")
 print_subheading("Snap")
 os.system("python3 virtuos/apps/snap.py")
+print_subheading("Apt")
+os.system("python3 virtuos/apps/apt.py")
 print_subheading("Dropbox")
 os.system("python3 virtuos/apps/dropbox.py")
