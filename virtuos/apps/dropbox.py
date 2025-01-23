@@ -30,9 +30,5 @@ for file_link in file_links:
 file = files[-1]
 print("\tDone")
 
-print("Downloading Dropbox...", end="")
 os.system(f"wget {url}/{file} -O $HOME/Downloads/{file}")
-
-print("Installing Dropbox...", end="")
 os.system(f"sudo dpkg -i $HOME/Downloads/{file}")
-
