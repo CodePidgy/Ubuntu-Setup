@@ -39,7 +39,7 @@ extensions=(
 )
 # for url in "${extensions[@]}"; do
 for extension in ${extensions[@]}; do
-    id=$(echo $extension | cut -d=/ -f=5)
+    id=$(echo $extension | cut --delimiter=/ --field=5)
     url="https://extensions.gnome.org/extension-info/?pk=${id}"
     uuid=$(curl -s "$url" | jq -r ".uuid" | tr -d "@")
     extension_version=$(curl -s "$url" | jq -r '.shell_version_map | to_entries | max_by(.value.version) | .value.version')
@@ -47,7 +47,7 @@ for extension in ${extensions[@]}; do
     file_name="${uuid}.v${latest_extension_version}.shell-extension.zip"
 
     wget -P /tmp "https://extensions.gnome.org/extension-data/${file_name}"
-    gnome-extension install /tmp/${file_name}
+    gnome-extensions install /tmp/${file_name}
     rm -f /tmp/${file_name}
 done
 
