@@ -1,0 +1,5 @@
+code,true
+gitkraken,true
+postman,false
+spotify,false
+thunderbird,false
