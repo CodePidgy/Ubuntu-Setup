@@ -75,12 +75,12 @@ while IFS="," read -r snap classic; do
     else
         sudo snap install $snap
     fi
-done < "snaps.txt"
+done < "snap.txt"
 
 # Install apts
 while IFS= read -r apt; do
     sudo apt install -y $apt
-done < "apts.txt"
+done < "apt.txt"
 
 # Install custom apps
 while IFS= read -r app; do
