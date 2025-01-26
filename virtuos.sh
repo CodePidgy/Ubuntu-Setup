@@ -10,6 +10,9 @@ sudo systemctl daemon-reload
 sudo apt install -y btop curl eza fzf git neofetch rar stow unrar unzip zsh
 sudo rm -f /usr/share/applications/btop.desktop
 
+# Set default shell
+chsh -s /usr/bin/zsh
+
 # Install some basic apps
 sudo apt install -y dconf-editor gnome-shell-extension-manager gnome-tweaks
 
