@@ -75,18 +75,12 @@ style = "Regular"
 x = 0
 y = 0
 
-[general]
-live_config_reload = true
-
 [[mouse.bindings]]
 action = "PasteSelection"
 mouse = "Middle"
 
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
-
-[terminal.shell]
-program = "/bin/zsh"
 
 [window]
 decorations = "full"
