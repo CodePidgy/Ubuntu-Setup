@@ -37,18 +37,18 @@ extensions=(
     "https://extensions.gnome.org/extension/5547/custom-accent-colors/"
     "https://extensions.gnome.org/extension/6682/astra-monitor/"
 )
-# for url in "${extensions[@]}"; do
 for extension in ${extensions[@]}; do
     id=$(echo $extension | cut --delimiter=/ --field=5)
     url="https://extensions.gnome.org/extension-info/?pk=${id}"
-    uuid=$(curl -s "$url" | jq -r ".uuid" | tr -d "@")
-    extension_version=$(curl -s "$url" | jq -r '.shell_version_map | to_entries | max_by(.value.version) | .value.version')
-    shell_version=$(curl -s "$url" | jq -r '.shell_version_map | to_entries | max_by(.value.version) | .key')
-    file_name="${uuid}.v${latest_extension_version}.shell-extension.zip"
+    metadata=$(curl -s $url)
+    uuid=$(echo $metadata | jq -r ".uuid" | tr -d "@")
+    shell_version=$(gnome-shell --version | cut --delimiter=" " --field=3 | cut --delimiter=. --field=1)
+    extension_version=$(echo $metadata | jq -r ".shell_version_map[\"${shell_version}\"].version")
+    file_name="${uuid}.v${extension_version}.shell-extension.zip"
 
-    wget -P /tmp "https://extensions.gnome.org/extension-data/${file_name}"
-    gnome-extensions install /tmp/${file_name}
-    rm -f /tmp/${file_name}
+    wget -P $HOME/Downloads "https://extensions.gnome.org/extension-data/${file_name}"
+    gnome-extensions install $HOME/Downloads/${file_name}
+    rm -f $HOME/Downloads/${file_name}
 done
 
 # Load extension dconf settings
