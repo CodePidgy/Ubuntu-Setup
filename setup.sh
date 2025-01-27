@@ -7,7 +7,7 @@ sudo apt autoremove -y
 sudo systemctl daemon-reload
 
 # Install cli tools
-sudo apt install -y btop curl eza fzf git neofetch rar stow unrar unzip zsh
+sudo apt install -y btop curl eza fzf git rar stow unrar unzip zsh
 sudo rm -f /usr/share/applications/btop.desktop
 
 # Set default shell
