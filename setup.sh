@@ -81,14 +81,14 @@ while IFS="," read -r snap classic; do
     else
         sudo snap install $snap
     fi
-done < "virtuos/snap.txt"
+done < "snap.txt"
 
 # Install apts
 while IFS= read -r apt; do
     sudo apt install -y $apt
-done < "virtuos/apt.txt"
+done < "apt.txt"
 
 # Install custom apps
 while IFS= read -r app; do
     eval apps/$app.sh
-done < "virtuos/custom.txt"
+done < "custom.txt"
