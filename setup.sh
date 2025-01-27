@@ -4,7 +4,6 @@
 sudo apt update
 sudo apt upgrade -y
 sudo apt autoremove -y
-sudo systemctl daemon-reload
 
 # Install cli tools
 sudo apt install -y btop curl eza fzf git rar stow unrar unzip zsh
