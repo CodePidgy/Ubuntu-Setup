@@ -5,6 +5,9 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt autoremove -y
 
+# Remove memtest
+sudo apt purge -y memtest86+
+
 # Install cli tools
 sudo apt install -y btop curl eza fzf git rar stow unrar unzip zsh
 sudo rm -f /usr/share/applications/btop.desktop
