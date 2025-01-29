@@ -42,7 +42,6 @@ extensions=(
     "https://extensions.gnome.org/extension/3740/compiz-alike-magic-lamp-effect/"
     "https://extensions.gnome.org/extension/3843/just-perfection/"
     "https://extensions.gnome.org/extension/4679/burn-my-windows/"
-    "https://extensions.gnome.org/extension/5547/custom-accent-colors/"
     "https://extensions.gnome.org/extension/6682/astra-monitor/"
 )
 for extension in ${extensions[@]}; do
