@@ -19,7 +19,7 @@ sudo chsh -s /usr/bin/zsh
 sudo apt install -y dconf-editor gnome-shell-extension-manager gnome-tweaks
 
 # Load system dconf settings
-dconf load / < data/system.ini
+dconf load / < dconf/system.ini
 
 # Set profile picture
 sudo rm -f /var/lib/AccountsService/icons/$USER
@@ -59,7 +59,7 @@ for extension in ${extensions[@]}; do
 done
 
 # Load extension dconf settings
-dconf load / < data/extensions.ini
+dconf load / < dconf/extensions.ini
 
 # Install Pyenv
 curl -fsSL https://pyenv.run | bash
