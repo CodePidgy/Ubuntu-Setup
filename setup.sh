@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# Parse args
+partial=0
+while getopts "p" opt; do
+	case $opt in
+		s)
+			partial=1
+			;;
+		\?)
+			echo "Invalid option: $OPTARG" >&2
+			;;
+	esac
+done
+
 # Update and upgrade everything
 sudo apt update
 sudo apt upgrade -y
@@ -74,6 +87,11 @@ $HOME/.pyenv/shims/pip install pipx
 $HOME/.pyenv/shims/pipx install black
 $HOME/.pyenv/shims/pipx install poetry
 $HOME/.local/bin/poetry config virtualenvs.in-project true
+
+# Check if only partial setup allowed
+if [[ $partial == 1 ]]; then
+    exit 0
+fi
 
 # Install snaps
 while IFS="," read -r snap classic; do
