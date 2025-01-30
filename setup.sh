@@ -16,10 +16,12 @@ done
 # Update and upgrade everything
 sudo apt update
 sudo apt upgrade -y
-sudo apt autoremove -y
 
-# Remove memtest
-sudo apt purge -y memtest86+
+# Remove unnecessary packages
+sudo apt purge -y info memtest86+
+
+# Remove leftover packages
+sudo apt autoremove -y
 
 # Install cli tools
 sudo apt install -y btop curl eza fzf git rar stow unrar unzip zsh
