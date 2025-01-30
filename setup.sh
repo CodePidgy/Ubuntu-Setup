@@ -45,9 +45,9 @@ mkdir $HOME/Pictures/Wallpapers
 cp images/bg-light.svg $HOME/Pictures/Wallpapers/
 cp images/bg-dark.svg $HOME/Pictures/Wallpapers/
 
-# Replace new startup sound
-sudo rm /usr/share/sounds/freedesktop/stereo/service-login.oga
-sudo cp sounds/startup.oga /usr/share/sounds/freedesktop/stereo/service-login.oga
+# Replace the 24.10 startup sound
+sudo rm /usr/share/sounds/Yaru/stereo/warty-startup.oga
+sudo cp sounds/startup.oga /usr/share/sounds/Yaru/stereo/warty-startup.oga
 
 # Dotfiles
 stow -d dotfiles -t $HOME .
