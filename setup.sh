@@ -25,11 +25,11 @@ sudo apt purge -y memtest86+
 sudo apt install -y btop curl eza fzf git rar stow unrar unzip zsh
 sudo rm -f /usr/share/applications/btop.desktop
 
-# Set default shell
-chsh -s /usr/bin/zsh
-
 # Install some basic apps
 sudo apt install -y dconf-editor gnome-shell-extension-manager gnome-tweaks
+
+# Set default shell
+chsh -s /usr/bin/zsh
 
 # Load system dconf settings
 dconf load / < dconf/system.ini
@@ -42,6 +42,10 @@ sudo cp images/profile.png /var/lib/AccountsService/icons/$USER
 mkdir $HOME/Pictures/Wallpapers
 cp images/bg-light.svg $HOME/Pictures/Wallpapers/
 cp images/bg-dark.svg $HOME/Pictures/Wallpapers/
+
+# Replace new startup sound
+sudo rm /usr/share/sounds/freedesktop/stereo/service-login.oga
+sudo cp sounds/startup.oga /usr/share/sounds/freedesktop/stereo/service-login.oga
 
 # Dotfiles
 stow -d dotfiles -t $HOME .
