@@ -4,7 +4,7 @@
 partial=0
 while getopts "p" opt; do
 	case $opt in
-		s)
+		p)
 			partial=1
 			;;
 		\?)
