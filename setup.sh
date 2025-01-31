@@ -27,6 +27,10 @@ sudo apt autoremove -y
 sudo apt install -y btop curl eza fzf rar stow unrar unzip zsh
 sudo rm -f /usr/share/applications/btop.desktop
 
+# Set up git lfs
+sudo apt install -y git-lfs
+git lfs install
+
 # Install some basic apps
 sudo apt install -y alacritty dconf-editor gnome-shell-extension-manager gnome-tweaks
 
