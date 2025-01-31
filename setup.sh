@@ -88,6 +88,9 @@ sudo apt install -y build-essential libbz2-dev libffi-dev liblzma-dev libncurses
 $HOME/.pyenv/bin/pyenv install $($HOME/.pyenv/bin/pyenv install -l | grep '^  3\.[0-9]*\.[0-9]*$' | tail -n 1)
 $HOME/.pyenv/bin/pyenv global $($HOME/.pyenv/bin/pyenv versions | tail -n 1)
 
+# Update pip
+$HOME/.pyenv/shims/python -m pip install --upgrade pip
+
 # Install pip tools
 $HOME/.pyenv/shims/pip install pipx
 $HOME/.pyenv/shims/pipx install black
