@@ -24,7 +24,7 @@ sudo apt purge -y info memtest86+
 sudo apt autoremove -y
 
 # Install cli tools
-sudo apt install -y btop curl eza fzf git rar stow unrar unzip zsh
+sudo apt install -y btop curl eza fzf rar stow unrar unzip zsh
 sudo rm -f /usr/share/applications/btop.desktop
 
 # Install some basic apps
