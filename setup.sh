@@ -28,7 +28,7 @@ sudo apt install -y btop curl eza fzf rar stow unrar unzip zsh
 sudo rm -f /usr/share/applications/btop.desktop
 
 # Install some basic apps
-sudo apt install -y dconf-editor gnome-shell-extension-manager gnome-tweaks
+sudo apt install -y alacritty dconf-editor gnome-shell-extension-manager gnome-tweaks
 
 # Set default shell
 chsh -s /usr/bin/zsh
