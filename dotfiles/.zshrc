@@ -78,7 +78,6 @@ alias ls="ls -a --color"
 
 # Shell integrations
 eval "$(pyenv init -)"
-#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Add fzf key bindings
 source /usr/share/doc/fzf/examples/key-bindings.zsh
