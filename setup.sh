@@ -106,9 +106,6 @@ if [[ $partial == 1 ]]; then
     exit 0
 fi
 
-# Update firefox
-sudo snap refresh firefox
-
 # Install snaps
 while IFS="," read -r snap classic; do
     if [[ $classic == "true" ]]; then
