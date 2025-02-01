@@ -106,6 +106,13 @@ if [[ $partial == 1 ]]; then
     exit 0
 fi
 
+# Update firefox
+sudo snap refresh firefox
+
+# Copy firefox profile
+rm -rf $HOME/snap/firefox/common/.mozila
+unzip data/firefox.zip -d $HOME/snap/firefox/common/.mozilla
+
 # Install snaps
 while IFS="," read -r snap classic; do
     if [[ $classic == "true" ]]; then
