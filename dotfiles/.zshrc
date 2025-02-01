@@ -83,3 +83,7 @@ eval "$(pyenv init -)"
 # Add fzf key bindings
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
+
+if [ -z "$TMUX" ]; then
+  tmux attach-session -t default &> /dev/null || tmux new-session -s default
+fi
