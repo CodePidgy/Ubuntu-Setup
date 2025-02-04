@@ -1,6 +1,7 @@
 code,true
 gitkraken,true
 postman,false
+rider,true
 spotify,false
 thunderbird,false
 vlc,false
