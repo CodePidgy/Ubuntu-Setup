@@ -24,6 +24,10 @@ sudo apt install -y alacritty dconf-editor gnome-shell-extension-manager gnome-t
 # Set default shell
 chsh -s /usr/bin/zsh
 
+# Install Flatpak
+sudo apt install -y flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 # Load system dconf settings
 dconf load / < dconf/system.ini
 

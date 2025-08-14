@@ -22,6 +22,15 @@ while IFS= read -r apt; do
     sudo apt install -y $apt
 done < "apps/apt.txt"
 
+# Install Flatpaks
+while IFS= read -r flatpak; do
+    if [[ ${flatpak:0:1} == "#" ]]; then
+        continue
+    fi
+
+    sudo flatpak install -y flathub $flatpak
+done < "apps/flatpak.txt"
+
 # Install custom apps
 while IFS= read -r app; do
     if [[ ${app:0:1} == "#" ]]; then
