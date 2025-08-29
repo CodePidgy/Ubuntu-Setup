@@ -3,5 +3,6 @@ docker
 dropbox
 nvm
 python
+rider
 timeshift
 virtualbox
