@@ -1,6 +1,7 @@
 cursor
 docker
 dropbox
+nvm
 python
 timeshift
 virtualbox
