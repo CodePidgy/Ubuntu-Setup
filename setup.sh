@@ -1,9 +1,9 @@
 #!/bin/bash
 
-./scripts/system.sh
-./scripts/cli.sh
-./scripts/basics.sh
-./scripts/images.sh
-./scripts/extensions.sh
-./scripts/dconf.sh
-./scripts/flatpak.sh
+./procedures/system.sh
+./procedures/cli.sh
+./procedures/basics.sh
+./procedures/images.sh
+./procedures/extensions.sh
+./procedures/dconf.sh
+./procedures/flatpak.sh

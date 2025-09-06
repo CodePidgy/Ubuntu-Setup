@@ -16,3 +16,6 @@ rm -f $HOME/Downloads/$file
 
 # Remove nautilus integration
 sudo mv /usr/lib/x86_64-linux-gnu/nautilus/extensions-4/libnautilus-dropbox.so{,.bak}
+
+# Add dropbox-ignore.sh script
+sudo ln -s $HOME/setup/scripts/dropbox-ignore.sh /usr/local/bin/dropbox-ignore
