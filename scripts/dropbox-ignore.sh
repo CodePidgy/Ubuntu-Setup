@@ -156,13 +156,13 @@ reset() {
 
     for path in "${paths_to_reset[@]}"; do
         ((reset_count++))
+
         if attr -r com.dropbox.ignored "$path" >/dev/null 2>&1; then
             echo "[INFO] Removed: $path" >&2
         else
             ((error_count++))
             echo "[ERROR] Failed: $path" >&2
         fi
-        (( reset_count % 10 == 0 )) && echo "[INFO] Progress: $reset_count/$total_paths, $error_count errors" >&2
     done
 
     echo "[SUCCESS] Removed: $((reset_count - error_count))/$total_paths | Errors: $error_count" >&2
@@ -171,11 +171,14 @@ reset() {
 # Apply patterns from .dropbox-ignore file
 apply() {
     local ignore_file="$1"
+    local dry_run="$2"
 
     if [[ -z "$ignore_file" ]]; then
-        echo "[ERROR] Usage: apply <path-to-.dropbox-ignore>" >&2
+        echo "[ERROR] Usage: apply [--dry] <path-to-.dropbox-ignore>" >&2
         return 1
     fi
+
+    [[ "$dry_run" == "true" ]] && echo "[DRY RUN] Preview mode - no changes will be made" >&2
 
     if [[ ! -f "$ignore_file" ]]; then
         echo "[ERROR] .dropbox-ignore file not found: $ignore_file" >&2
@@ -206,6 +209,7 @@ apply() {
     process_pattern() {
         local pattern="$1"
         local is_directory="$2"
+        local dry_run="$3"
         local matched_paths=()
         local pattern_applied=0
         local pattern_already_ignored=0
@@ -214,11 +218,22 @@ apply() {
             # Directory pattern - remove trailing slash for find
             local dir_pattern="${pattern%/}"
 
+            # Build find command with pruning for already-ignored directories
+            local find_cmd="find \"$base_dir\""
+
+            # Add exclusions for ignored directories
+            for ignored_dir in "${ignored_dirs[@]}"; do
+                find_cmd+=" -path \"$ignored_dir\" -prune -o"
+            done
+
+            # Add the directory search
+            find_cmd+=" -type d -name \"$dir_pattern\" -print0"
+
             # Find all matching directories and sort by path length (shallowest first)
             local all_matches=()
             while IFS= read -r -d '' path; do
                 all_matches+=("$path")
-            done < <(find "$base_dir" -type d -name "$dir_pattern" -print0 2>/dev/null)
+            done < <(eval "$find_cmd" 2>/dev/null)
 
             # Sort by path length to process parent directories first
             IFS=$'\n' sorted_matches=($(printf '%s\n' "${all_matches[@]}" | awk '{print length($0) " " $0}' | sort -n | cut -d' ' -f2-))
@@ -264,23 +279,42 @@ apply() {
 
         # Apply ignore attribute to all matched paths
         for path in "${matched_paths[@]}"; do
-            if attr -g com.dropbox.ignored "$path" >/dev/null 2>&1; then
-                echo "[INFO] Skipping: $path" >&2
+            if [[ "$dry_run" == "true" ]]; then
+                # Dry-run mode: check current state but don't modify
+                if attr -g com.dropbox.ignored "$path" >/dev/null 2>&1; then
+                    echo "[DRY] Skipped: $path" >&2
+                    ((already_ignored_count++))
+                    ((pattern_already_ignored++))
+                else
+                    echo "[DRY] Applied: $path" >&2
+                    ((applied_count++))
+                    ((pattern_applied++))
+                fi
+
+                # In dry-run, always add to ignored_dirs for proper pruning simulation
                 if [[ "$is_directory" == "true" ]]; then
                     ignored_dirs+=("$path")
                 fi
-                ((already_ignored_count++))
-                ((pattern_already_ignored++))
-            elif attr -s com.dropbox.ignored -V 1 "$path" >/dev/null 2>&1; then
-                echo "[INFO] Applied: $path" >&2
-                if [[ "$is_directory" == "true" ]]; then
-                    ignored_dirs+=("$path")
-                fi
-                ((applied_count++))
-                ((pattern_applied++))
             else
-                echo "[ERROR] Failed: $path" >&2
-                ((error_count++))
+                # Normal mode: actually apply changes
+                if attr -g com.dropbox.ignored "$path" >/dev/null 2>&1; then
+                    echo "[INFO] Skipped: $path" >&2
+                    if [[ "$is_directory" == "true" ]]; then
+                        ignored_dirs+=("$path")
+                    fi
+                    ((already_ignored_count++))
+                    ((pattern_already_ignored++))
+                elif attr -s com.dropbox.ignored -V 1 "$path" >/dev/null 2>&1; then
+                    echo "[INFO] Applied: $path" >&2
+                    if [[ "$is_directory" == "true" ]]; then
+                        ignored_dirs+=("$path")
+                    fi
+                    ((applied_count++))
+                    ((pattern_applied++))
+                else
+                    echo "[ERROR] Failed: $path" >&2
+                    ((error_count++))
+                fi
             fi
         done
 
@@ -307,14 +341,18 @@ apply() {
         if [[ "$pattern" == */ ]]; then
             ((dir_count++))
             [[ $dir_count -eq 1 ]] && echo "[INFO] Phase 1: Directory patterns" >&2
-            process_pattern "$pattern" "true"
+            process_pattern "$pattern" "true" "$dry_run"
         else
             [[ $dir_count -gt 0 && $((pattern_count - dir_count)) -eq 1 ]] && echo "[INFO] Phase 2: File patterns" >&2
-            process_pattern "$pattern" "false"
+            process_pattern "$pattern" "false" "$dry_run"
         fi
     done < "$ignore_file"
 
-    echo "[SUCCESS] Patterns: $pattern_count | Applied: $applied_count | Skipped: $already_ignored_count | Errors: $error_count" >&2
+    if [[ "$dry_run" == "true" ]]; then
+        echo "[DRY RUN] Patterns: $pattern_count | Would apply: $applied_count | Already ignored: $already_ignored_count | Errors: $error_count" >&2
+    else
+        echo "[SUCCESS] Patterns: $pattern_count | Applied: $applied_count | Skipped: $already_ignored_count | Errors: $error_count" >&2
+    fi
 }
 
 # Main script logic
@@ -332,7 +370,19 @@ case "$1" in
         reset "$2"
         ;;
     "apply")
-        apply "$2"
+        if [[ "$2" == "--dry" ]]; then
+            apply "$3" "true"
+        else
+            apply "$2" "false"
+        fi
+        ;;
+    "--dry")
+        if [[ "$2" == "apply" ]]; then
+            apply "$3" "true"
+        else
+            echo "[ERROR] --dry flag only supported with apply command" >&2
+            exit 1
+        fi
         ;;
     *)
         echo "Usage: $0 [scan|reset|add|remove|apply]"
@@ -341,6 +391,7 @@ case "$1" in
         echo "  scan [dir]              Scan for ignored files/directories"
         echo "  reset [dir]             Remove ignore attributes"
         echo "  apply <ignore-file>     Apply patterns from .dropbox-ignore"
+        echo "  apply --dry <file>      Preview apply without making changes"
         echo ""
         echo "Examples:"
         echo "  $0 add ./node_modules            # Ignore specific folder"
@@ -349,6 +400,7 @@ case "$1" in
         echo "  $0 scan /project                 # Scan specific directory"
         echo "  $0 scan | $0 reset               # Pipe results to reset"
         echo "  $0 apply /project/.dropbox-ignore # Apply patterns"
+        echo "  $0 apply --dry /project/.dropbox-ignore # Preview changes"
         exit 1
         ;;
 esac
