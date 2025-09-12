@@ -1,3 +1,4 @@
+beekeeper-studio
 cursor
 docker
 dropbox
