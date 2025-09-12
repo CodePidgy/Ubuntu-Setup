@@ -226,8 +226,35 @@ apply() {
                 find_cmd+=" -path \"$ignored_dir\" -prune -o"
             done
 
-            # Add the directory search
-            find_cmd+=" -type d -name \"$dir_pattern\" -print0"
+            # Add the directory search - handle ** glob patterns
+            if [[ "$dir_pattern" == *"**"* ]]; then
+                # Complex pattern with ** - handle recursive matching
+                if [[ "$dir_pattern" == *"**"*/* ]]; then
+                    # Pattern like "parent/**/child" - extract parent path and target name
+                    local parent_part="${dir_pattern%%/**/*}"
+                    local child_part="${dir_pattern##*/}"
+                    if [[ -n "$parent_part" && -n "$child_part" ]]; then
+                        find_cmd+=" -path \"*/$parent_part/*\" -type d -name \"$child_part\" -print0"
+                    else
+                        # Fallback to simple path matching
+                        local find_pattern="${dir_pattern//\*\*/\*}"
+                        find_cmd+=" -type d -path \"*/$find_pattern\" -print0"
+                    fi
+                else
+                    # Pattern ends with ** - match any subdirectory
+                    local base_pattern="${dir_pattern%/**}"
+                    find_cmd+=" -path \"*/$base_pattern/*\" -type d -print0"
+                fi
+            else
+                # Simple pattern - use -name for exact directory name matching
+                if [[ "$dir_pattern" == */* ]]; then
+                    # Pattern has path separators - use -path
+                    find_cmd+=" -type d -path \"*/$dir_pattern\" -print0"
+                else
+                    # Simple directory name - use -name
+                    find_cmd+=" -type d -name \"$dir_pattern\" -print0"
+                fi
+            fi
 
             # Find all matching directories and sort by path length (shallowest first)
             local all_matches=()
@@ -262,9 +289,27 @@ apply() {
                 find_cmd+=" -path \"$ignored_dir\" -prune -o"
             done
 
-            # Handle patterns with path separators (like dist/*.js)
-            if [[ "$pattern" == */* ]]; then
-                # Complex pattern with path
+            # Handle patterns with ** glob syntax
+            if [[ "$pattern" == *"**"* ]]; then
+                # Complex pattern with ** - handle recursive matching
+                if [[ "$pattern" == *"**"*/* ]]; then
+                    # Pattern like "parent/**/file.ext" - extract parent path and target name
+                    local parent_part="${pattern%%/**/*}"
+                    local child_part="${pattern##*/}"
+                    if [[ -n "$parent_part" && -n "$child_part" ]]; then
+                        find_cmd+=" -path \"*/$parent_part/*\" -type f -name \"$child_part\" -print0"
+                    else
+                        # Fallback to simple path matching
+                        local find_pattern="${pattern//\*\*/\*}"
+                        find_cmd+=" -type f -path \"*/$find_pattern\" -print0"
+                    fi
+                else
+                    # Pattern ends with ** - match any file in subdirectories
+                    local base_pattern="${pattern%/**}"
+                    find_cmd+=" -path \"*/$base_pattern/*\" -type f -print0"
+                fi
+            elif [[ "$pattern" == */* ]]; then
+                # Pattern with path separators but no ** (like dist/*.js)
                 find_cmd+=" -type f -path \"*/$pattern\" -print0"
             else
                 # Simple filename pattern
