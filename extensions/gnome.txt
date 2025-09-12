@@ -1,5 +1,6 @@
 https://extensions.gnome.org/extension/7/removable-drive-menu/
 https://extensions.gnome.org/extension/1160/dash-to-panel/
+https://extensions.gnome.org/extension/1720/weeks-start-on-monday-again/
 https://extensions.gnome.org/extension/3193/blur-my-shell/
 https://extensions.gnome.org/extension/3210/compiz-windows-effect/
 https://extensions.gnome.org/extension/3740/compiz-alike-magic-lamp-effect/
