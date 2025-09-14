@@ -1,6 +1,7 @@
 beekeeper-studio
 cursor
 docker
+dotnet
 dropbox
 nvm
 python
