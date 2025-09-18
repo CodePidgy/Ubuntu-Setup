@@ -6,5 +6,6 @@ dropbox
 nvm
 python
 rider
+sourcegit
 timeshift
 virtualbox
