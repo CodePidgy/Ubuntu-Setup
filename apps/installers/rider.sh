@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Install Rider
+sudo apt install -y rider --classic
+
 # Create file
 sudo touch /etc/sysctl.d/idea.conf
 
