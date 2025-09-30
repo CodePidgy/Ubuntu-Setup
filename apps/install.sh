@@ -30,12 +30,3 @@ while IFS= read -r flatpak; do
 
     sudo flatpak install -y flathub $flatpak
 done < "apps/flatpak.txt"
-
-# Install custom apps
-while IFS= read -r app; do
-    if [[ ${app:0:1} == "#" ]]; then
-        continue
-    fi
-
-    eval apps/installers/$app.sh
-done < "apps/custom.txt"
