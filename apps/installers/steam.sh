@@ -1,7 +1,10 @@
 #!/bin/bash
 
+echo '[INFO] Downloading Steam...'
+wget -P $HOME/Downloads https://cdn.akamai.steamstatic.com/client/installer/steam.deb
+
 echo "[INFO] Installing Steam..."
-sudo snap install steam
+sudo apt install -y $HOME/Downloads/steam_latest.deb
 
 echo "[INFO] Adding 32-bit architecture..."
 sudo dpkg --add-architecture i386
