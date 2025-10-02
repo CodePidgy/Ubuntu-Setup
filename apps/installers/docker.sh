@@ -14,7 +14,7 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 echo "[INFO] Cleaning up..."
 rm -f $HOME/Downloads/docker-desktop-amd64.deb
 
-echo "[INFO] Addomg user to docker group..."
+echo "[INFO] Adding user to docker group..."
 sudo groupadd docker
 sudo usermod -a -G docker $USER
 newgrp docker
