@@ -14,7 +14,7 @@ echo "[INFO] Cleaning up..."
 rm -f $HOME/Downloads/winboat-${LATEST_VERSION}-amd64.deb
 
 echo "[INFO] Installing FreeRDP..."
-sudo flatpak install -y flathub org.freerdp.FreeRDP
+sudo flatpak install -y org.freerdp.FreeRDP
 
 echo "[INFO] Loading iptables..."
 echo -e "ip_tables\niptable_nat" | sudo tee /etc/modules-load.d/iptables.conf
