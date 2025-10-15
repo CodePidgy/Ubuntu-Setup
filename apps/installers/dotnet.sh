@@ -7,4 +7,4 @@ rm packages-microsoft-prod.deb
 
 # Install
 sudo apt update
-sudo apt install -y dotnet-sdk-9.0
+sudo apt install -y dotnet-sdk-9.0 dotnet-sdk-8.0 aspnetcore-runtime-9.0 aspnetcore-runtime-8.0
