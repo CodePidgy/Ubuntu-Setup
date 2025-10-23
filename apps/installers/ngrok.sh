@@ -7,3 +7,7 @@ echo "deb https://ngrok-agent.s3.amazonaws.com bookworm main" | sudo tee /etc/ap
 # Install ngrok
 sudo apt update
 sudo apt install -y ngrok
+
+# Notes
+# Go to https://dashboard.ngrok.com/get-started/setup/linux to copy and run the auth token command
+# Add "console_ui_color: transparent" to ~/.config/ngrok/ngrok.yml
