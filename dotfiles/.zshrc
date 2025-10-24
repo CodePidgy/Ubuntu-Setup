@@ -78,6 +78,7 @@ alias ls="ls -a --color"
 
 # Shell integrations
 eval "$(pyenv init -)"
+eval "$(zoxide init zsh)"
 
 # Add fzf key bindings
 source /usr/share/doc/fzf/examples/key-bindings.zsh
