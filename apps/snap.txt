@@ -1,5 +1,6 @@
 code,true
 discord,false
+libreoffice,false
 postman,false
 spotify,false
 thunderbird,false
