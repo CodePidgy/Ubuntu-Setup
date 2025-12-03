@@ -73,6 +73,7 @@ zstyle ":completion:*:git-checkout:*" sort false
 zstyle ":fzf-tab:complete:cd:*" fzf-preview 'eza -1 --color=always $realpath'
 
 # Aliases
+alias c="clear"
 alias gedit="gnome-text-editor"
 alias ls="ls -a --color"
 
