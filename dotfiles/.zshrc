@@ -76,6 +76,7 @@ zstyle ":fzf-tab:complete:cd:*" fzf-preview 'eza -1 --color=always $realpath'
 alias c="clear"
 alias gedit="gnome-text-editor"
 alias ls="ls -a --color"
+alias nrd="npm run dev"
 
 # Shell integrations
 eval "$(pyenv init -)"
