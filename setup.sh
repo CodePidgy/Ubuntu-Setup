@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ./procedures/system.sh
+./procedures/peripherals.sh
 ./procedures/cli.sh
 ./procedures/basics.sh
 ./procedures/images.sh
