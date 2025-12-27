@@ -1,1 +1,13 @@
+io.github.kolunmi.Bazaar
+io.beekeeperstudio.Studio
+com.google.Chrome
+ca.desrt.dconf-editor
+com.discordapp.Discord
+com.mattjakeman.ExtensionManager
+com.github.tchx84.Flatseal
+com.getpostman.Postman
+io.github.pwr_solaar.solaar
+org.mozilla.Thunderbird
+org.videolan.VLC
+io.github.flattool.Warehouse
 app.zen_browser.zen

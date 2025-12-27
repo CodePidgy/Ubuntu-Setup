@@ -1,2 +1,4 @@
+alacritty
 gparted
 ngrok
+gnome-tweaks

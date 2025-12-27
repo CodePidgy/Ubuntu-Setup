@@ -7,3 +7,4 @@
 ./procedures/images.sh
 ./procedures/dconf.sh
 ./procedures/flatpak.sh
+./procedures/trim.sh
