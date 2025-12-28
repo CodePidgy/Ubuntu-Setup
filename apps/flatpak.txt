@@ -6,8 +6,8 @@ com.discordapp.Discord
 com.mattjakeman.ExtensionManager
 com.github.tchx84.Flatseal
 com.getpostman.Postman
-io.github.pwr_solaar.solaar
 org.mozilla.Thunderbird
 org.videolan.VLC
 io.github.flattool.Warehouse
+com.mikrotik.WinBox
 app.zen_browser.zen
