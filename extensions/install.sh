@@ -18,13 +18,3 @@ while IFS= read -r extension; do
     gnome-extensions install $HOME/Downloads/${file_name}
     rm -f $HOME/Downloads/${file_name}
 done < "extensions/gnome.txt"
-
-# Install custom extensions
-while IFS= read -r extension; do
-    if [[ ${extension:0:1} == "#" ]]; then
-        continue
-    fi
-
-    eval extensions/installers/$extension.sh
-done < "extensions/custom.txt"
-
