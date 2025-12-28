@@ -7,7 +7,7 @@ sudo apt purge -y info memtest86+
 sudo apt purge -y gnome-software-common gnome-software-plugin-flatpak gnome-software-plugin-snap
 
 # Remove other apps
-sudo apt purge -y gnome-characters gnome-font-viewer yelp language-selector-gnome
+sudo apt purge -y gnome-characters gnome-font-viewer
 
 # Remove other snaps
 sudo snap remove --purge firmware-updater
