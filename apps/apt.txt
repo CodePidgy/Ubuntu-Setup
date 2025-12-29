@@ -1,5 +1,6 @@
 alacritty
 gparted
+mangohud
 ngrok
 steam
 gnome-tweaks
