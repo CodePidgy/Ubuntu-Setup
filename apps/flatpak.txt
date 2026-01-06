@@ -6,6 +6,7 @@ com.discordapp.Discord
 com.mattjakeman.ExtensionManager
 com.github.tchx84.Flatseal
 io.github.radiolamp.mangojuice
+org.onlyoffice.desktopeditors
 com.getpostman.Postman
 com.spotify.Client
 org.mozilla.Thunderbird
