@@ -2,7 +2,8 @@
 
 desktop=false
 laptop=false
-work=false
+work_home=false
+work_office=false
 
 if [[ "$1" == "--desktop" ]]; then
     desktop=true
@@ -12,8 +13,12 @@ if [[ "$1" == "--laptop" ]]; then
     laptop=true
 fi
 
-if [[ "$1" == "--work" ]]; then
-    work=true
+if [[ "$1" == "--work-home" ]]; then
+    work_home=true
+fi
+
+if [[ "$1" == "--work-office" ]]; then
+    work_office=true
 fi
 
 # Load dconf settings
@@ -33,7 +38,12 @@ if $laptop; then
 fi
 
 # Load work-specific dconf settings
-if $work; then
-    dconf load / < dconf/work/system.ini
-    dconf load / < dconf/work/extensions.ini
+if $work_home; then
+    dconf load / < dconf/work-home/system.ini
+    dconf load / < dconf/work-home/extensions.ini
+fi
+
+if $work_office; then
+    dconf load / < dconf/work-office/system.ini
+    dconf load / < dconf/work-office/extensions.ini
 fi
