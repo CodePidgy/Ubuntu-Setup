@@ -57,7 +57,7 @@ zstyle ":fzf-tab:complete:cd:*" fzf-preview 'eza -1 --color=always $realpath'
 # Aliases
 alias c="clear"
 alias gedit="gnome-text-editor"
-alias iads="z infodash-admin && npm run dev"
+alias iadd="z infodash-admin && npm run dev"
 alias iadt="z infodash-admin && npm run test"
 alias ls="ls -a --color"
 alias nrd="npm run dev"
