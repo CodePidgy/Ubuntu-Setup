@@ -55,6 +55,7 @@ zstyle ":completion:*:git-checkout:*" sort false
 zstyle ":fzf-tab:complete:cd:*" fzf-preview 'eza -1 --color=always $realpath'
 
 # Aliases
+alias autoremove="sudo apt autoremove -y"
 alias c="clear"
 alias gedit="gnome-text-editor"
 alias iadd="z infodash-admin && npm run dev"
@@ -62,6 +63,8 @@ alias iadt="z infodash-admin && npm run test"
 alias ls="ls -a --color"
 alias nrd="npm run dev"
 alias nrt="npm run test"
+alias update="sudo apt update"
+alias upgrade="sudo apt upgrade -y"
 
 # Shell integrations
 eval "$(pyenv init -)"
