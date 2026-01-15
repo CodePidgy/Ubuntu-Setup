@@ -8,6 +8,7 @@ com.github.tchx84.Flatseal
 org.onlyoffice.desktopeditors
 com.getpostman.Postman
 com.spotify.Client
+com.stremio.Stremio
 org.mozilla.Thunderbird
 org.videolan.VLC
 io.github.flattool.Warehouse
