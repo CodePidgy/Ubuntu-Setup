@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# Get latest version
+echo "[INFO] Finding latest nvm version..."
 LATEST_VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
-# Create nvm directory
+echo "[INFO] Creating nvm directory..."
 mkdir -p $HOME/.config/nvm
 
-# Install nvm
+echo "[INFO] Installing nvm..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$LATEST_VERSION/install.sh | bash
-
-# Source nvm
 source $HOME/.config/nvm/nvm.sh
 
-# Install node
+echo "[INFO] Installing latest Node.js..."
 nvm install node
+
+echo "[INFO] Done"

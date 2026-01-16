@@ -67,7 +67,7 @@ alias update="sudo apt update"
 alias upgrade="sudo apt upgrade -y"
 
 # Shell integrations
-eval "$(pyenv init -)"
+[[ -d "${PYENV_HOME:-}" ]] && eval "$(pyenv init -)"
 eval "$(zoxide init zsh)"
 
 # Add fzf key bindings

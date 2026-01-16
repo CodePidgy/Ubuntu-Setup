@@ -1,25 +1,28 @@
 #!/bin/bash
 
-# Find the latest version
+echo "[INFO] Finding latest SourceGit version..."
 LATEST_VERSION=$(curl -s https://api.github.com/repos/sourcegit-scm/sourcegit/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/^v//')
 
-# Download SourceGit
+echo "[INFO] Downloading SourceGit..."
 wget -P $HOME/Downloads https://github.com/sourcegit-scm/sourcegit/releases/download/v$LATEST_VERSION/sourcegit_${LATEST_VERSION}-1_amd64.deb
 
-# Install SourceGit
+echo "[INFO] Installing SourceGit..."
 sudo apt install -y $HOME/Downloads/sourcegit_${LATEST_VERSION}-1_amd64.deb
 
-# Download Git Credential Manager
+echo "[INFO] Finding latest Git Credential Manager version..."
 LATEST_VERSION=$(curl -s https://api.github.com/repos/git-ecosystem/git-credential-manager/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/^v//')
 
-# Download Git Credential Manager
+echo "[INFO] Downloading Git Credential Manager..."
 wget -P $HOME/Downloads https://github.com/git-ecosystem/git-credential-manager/releases/download/v$LATEST_VERSION/gcm-linux_amd64.${LATEST_VERSION}.deb
 
-# Install Git Credential Manager
+echo "[INFO] Installing Git Credential Manager..."
 sudo apt install -y $HOME/Downloads/gcm-linux_amd64.${LATEST_VERSION}.deb
 
-# Setup Git Credential Manager
+echo "[INFO] Setting up Git Credential Manager..."
 git config --global credential.credentialStore gpg
+
+echo "[INFO] Installing pass..."
+sudo apt install -y pass
 
 # Manual setup
 # - Copy password for email address

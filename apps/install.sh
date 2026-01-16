@@ -28,5 +28,5 @@ while IFS= read -r flatpak; do
         continue
     fi
 
-    sudo flatpak install -y flathub $flatpak
+    sudo flatpak install -y $flatpak
 done < "apps/flatpak.txt"

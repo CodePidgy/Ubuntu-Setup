@@ -1,9 +1,10 @@
 ./procedures/system.sh
-./procedures/peripherals.sh
 ./procedures/cli.sh
-./procedures/basics.sh
+./procedures/peripherals.sh
+./procedures/dotfiles.sh
 ./procedures/images.sh
-./procedures/dconf.sh
 ./procedures/flatpak.sh
 ./procedures/trim.sh
 ./procedures/laptop.sh
+./procedures/work.sh
+./procedures/dconf.sh
