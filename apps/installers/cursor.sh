@@ -15,9 +15,6 @@ echo "[INFO] Installing Cursor..."
 sudo apt install -y $FILE
 
 echo "[INFO] Increasing inotify watch limit..."
-sudo cp /etc/sysctl.conf /etc/sysctl.conf.bak
-sudo bash -c "echo '# Increase inotify watch limit for Cursor' >> /etc/sysctl.conf"
-sudo bash -c "echo 'fs.inotify.max_user_watches = 524288' >> /etc/sysctl.conf"
-sudo sysctl -p --system
+echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max_user_watches.conf
 
 echo "[INFO] Done"
