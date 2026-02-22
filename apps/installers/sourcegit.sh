@@ -13,10 +13,10 @@ echo "[INFO] Finding latest Git Credential Manager version..."
 LATEST_VERSION=$(curl -s https://api.github.com/repos/git-ecosystem/git-credential-manager/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/^v//')
 
 echo "[INFO] Downloading Git Credential Manager..."
-wget -P $HOME/Downloads https://github.com/git-ecosystem/git-credential-manager/releases/download/v$LATEST_VERSION/gcm-linux_amd64.${LATEST_VERSION}.deb
+wget -P $HOME/Downloads https://github.com/git-ecosystem/git-credential-manager/releases/download/v$LATEST_VERSION/gcm-linux-x64-${LATEST_VERSION}.deb
 
 echo "[INFO] Installing Git Credential Manager..."
-sudo apt install -y $HOME/Downloads/gcm-linux_amd64.${LATEST_VERSION}.deb
+sudo apt install -y $HOME/Downloads/gcm-linux-x64-${LATEST_VERSION}.deb
 
 echo "[INFO] Setting up Git Credential Manager..."
 git config --global credential.credentialStore gpg
