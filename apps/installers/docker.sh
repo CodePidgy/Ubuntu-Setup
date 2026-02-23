@@ -19,4 +19,8 @@ sudo groupadd docker
 sudo usermod -a -G docker $USER
 newgrp docker
 
+echo "[INFO] Installing legacy Docker Compose..."
+sudo curl -SL https://github.com/docker/compose/releases/download/v5.0.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
 echo "[INFO] Done"
