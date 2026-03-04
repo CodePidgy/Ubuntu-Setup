@@ -57,6 +57,7 @@ zstyle ":fzf-tab:complete:cd:*" fzf-preview 'eza -1 --color=always $realpath'
 # Aliases
 alias autoremove="sudo apt autoremove -y"
 alias c="clear"
+alias freemem="echo 1 | sudo tee /proc/sys/vm/drop_caches"
 alias gedit="gnome-text-editor"
 alias iadd="z infodash-admin && npm run dev"
 alias iadt="z infodash-admin && npm run test"
