@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# Install
+echo "[INFO] Installing OpenRGB..."
 flatpak install -y org.openrgb.OpenRGB
 
 # Setup udev rules (https://openrgb.org/udev)
+echo "[INFO] Setting up udev rules..."
 wget https://openrgb.org/releases/release_0.9/60-openrgb.rules
 sudo mv 60-openrgb.rules /usr/lib/udev/rules.d
 sudo udevadm control --reload-rules
