@@ -1,13 +1,12 @@
 #!/bin/bash
 
-echo "[INFO] Finding latest SourceGit version..."
-LATEST_VERSION=$(curl -s https://api.github.com/repos/sourcegit-scm/sourcegit/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/^v//')
-
-echo "[INFO] Downloading SourceGit..."
-wget -P $HOME/Downloads https://github.com/sourcegit-scm/sourcegit/releases/download/v$LATEST_VERSION/sourcegit_${LATEST_VERSION}-1_amd64.deb
+echo "[INFO] Adding repository..."
+curl https://codeberg.org/api/packages/yataro/debian/repository.key | sudo tee /etc/apt/keyrings/sourcegit.asc
+echo "deb [signed-by=/etc/apt/keyrings/sourcegit.asc, arch=amd64,arm64] https://codeberg.org/api/packages/yataro/debian generic main" | sudo tee /etc/apt/sources.list.d/sourcegit.list
+sudo apt update
 
 echo "[INFO] Installing SourceGit..."
-sudo apt install -y $HOME/Downloads/sourcegit_${LATEST_VERSION}-1_amd64.deb
+sudo apt install sourcegit
 
 echo "[INFO] Finding latest Git Credential Manager version..."
 LATEST_VERSION=$(curl -s https://api.github.com/repos/git-ecosystem/git-credential-manager/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/^v//')
