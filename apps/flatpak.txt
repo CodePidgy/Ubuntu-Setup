@@ -10,7 +10,7 @@ org.onlyoffice.desktopeditors
 com.getpostman.Postman
 com.spotify.Client
 com.stremio.Stremio
-org.mozilla.Thunderbird
+org.mozilla.thunderbird_esr
 org.videolan.VLC
 io.github.flattool.Warehouse
 com.mikrotik.WinBox
