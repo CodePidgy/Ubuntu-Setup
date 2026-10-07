@@ -7,6 +7,7 @@ com.mattjakeman.ExtensionManager
 com.github.tchx84.Flatseal
 md.obsidian.Obsidian
 org.onlyoffice.desktopeditors
+io.podman_desktop.PodmanDesktop
 com.getpostman.Postman
 com.spotify.Client
 com.stremio.Stremio
