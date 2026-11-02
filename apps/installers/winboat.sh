@@ -1,10 +1,10 @@
 #!/bin/bash
 
 echo "[INFO] Finding latest version..."
-LATEST_VERSION=$(curl -s https://api.github.com/repos/TibixDev/winboat/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/^v//')
+LATEST_VERSION=$(curl -s https://api.github.com/repos/winboat-org/winboat/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sed 's/^v//')
 
 echo "[INFO] Downloading Winboat..."
-wget -P $HOME/Downloads https://github.com/TibixDev/winboat/releases/download/v$LATEST_VERSION/winboat-${LATEST_VERSION}-amd64.deb
+wget -P $HOME/Downloads https://github.com/winboat-org/winboat/releases/download/v$LATEST_VERSION/winboat-${LATEST_VERSION}-amd64.deb
 
 echo "[INFO] Installing Winboat..."
 sudo apt install -y $HOME/Downloads/winboat-${LATEST_VERSION}-amd64.deb
