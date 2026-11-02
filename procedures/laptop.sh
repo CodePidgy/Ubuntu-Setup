@@ -1,8 +1,10 @@
 #!/bin/bash
 
 echo "[INFO] Enabling wake on USB..."
-sudo touch /etc/udev/rules.d/10-wakeup.rules
-echo 'ACTION=="add", SUBSYSTEM=="usb", ATTRS{3434}=="c548", ATTRS{d027}=="8120", ATTR{power/wakeup}="enabled"' | sudo tee -a /etc/udev/rules.d/10-wakeup.rules
+printf '%s\n' \
+    'ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="3434", ATTR{idProduct}=="d027", ATTR{power/wakeup}="enabled"' \
+    'ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c548", ATTR{power/wakeup}="enabled"' \
+    | sudo tee /etc/udev/rules.d/10-wakeup.rules
 sudo udevadm control --reload-rules
 
 echo "[INFO] Done"
