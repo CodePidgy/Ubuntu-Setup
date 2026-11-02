@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Install snaps
+echo "[INFO] Installing snaps..."
 while IFS="," read -r snap classic; do
     if [[ ${snap:0:1} == "#" ]]; then
         continue
@@ -13,7 +13,7 @@ while IFS="," read -r snap classic; do
     fi
 done < "apps/snap.txt"
 
-# Install apts
+echo "[INFO] Installing apts..."
 while IFS= read -r apt; do
     if [[ ${apt:0:1} == "#" ]]; then
         continue
@@ -22,7 +22,7 @@ while IFS= read -r apt; do
     sudo apt install -y $apt
 done < "apps/apt.txt"
 
-# Install Flatpaks
+echo "[INFO] Installing Flatpaks..."
 while IFS= read -r flatpak; do
     if [[ ${flatpak:0:1} == "#" ]]; then
         continue
@@ -30,3 +30,5 @@ while IFS= read -r flatpak; do
 
     sudo flatpak install -y $flatpak
 done < "apps/flatpak.txt"
+
+echo "[INFO] Done"

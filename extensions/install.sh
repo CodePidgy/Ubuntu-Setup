@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Install GNOME extensions
+echo "[INFO] Installing GNOME extensions..."
 while IFS= read -r extension; do
     if [[ ${extension:0:1} == "#" ]]; then
         continue
@@ -18,3 +18,5 @@ while IFS= read -r extension; do
     gnome-extensions install $HOME/Downloads/${file_name}
     rm -f $HOME/Downloads/${file_name}
 done < "extensions/gnome.txt"
+
+echo "[INFO] Done"

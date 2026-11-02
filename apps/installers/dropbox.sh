@@ -16,3 +16,5 @@ rm -f $HOME/Downloads/$file
 
 echo "[INFO] Adding dropbox-ignore command..."
 sudo ln -s $HOME/setup/scripts/dropbox-ignore.sh /usr/local/bin/dropbox-ignore
+
+echo "[INFO] Done"

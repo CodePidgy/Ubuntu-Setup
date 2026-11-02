@@ -28,34 +28,38 @@ if [[ "$1" == "--work-office" ]]; then
     work_office=true
 fi
 
-# Load dconf settings
+echo "[INFO] Loading dconf settings..."
 dconf load / < dconf/system.ini
 dconf load / < dconf/extensions.ini
 
-# Load desktop-specific dconf settings
 if $desktop; then
+    echo "[INFO] Loading desktop dconf settings..."
     dconf load / < dconf/desktop/system.ini
     dconf load / < dconf/desktop/extensions.ini
 fi
 
-# Load laptop-specific dconf settings
 if $laptop; then
+    echo "[INFO] Loading laptop dconf settings..."
     dconf load / < dconf/laptop/system.ini
     dconf load / < dconf/laptop/extensions.ini
 fi
 
-# Load work-specific dconf settings
 if $work; then
+    echo "[INFO] Loading work dconf settings..."
     dconf load / < dconf/work/system.ini
     dconf load / < dconf/work/extensions.ini
 fi
 
 if $work_home; then
+    echo "[INFO] Loading work home dconf settings..."
     dconf load / < dconf/work/home/system.ini
     dconf load / < dconf/work/home/extensions.ini
 fi
 
 if $work_office; then
+    echo "[INFO] Loading work office dconf settings..."
     dconf load / < dconf/work/office/system.ini
     dconf load / < dconf/work/office/extensions.ini
 fi
+
+echo "[INFO] Done"

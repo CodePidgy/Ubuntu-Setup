@@ -1,13 +1,15 @@
 #!/bin/bash
 
-# Remove default software app
+echo "[INFO] Removing default software app..."
 sudo apt purge -y gnome-software-common gnome-software-plugin-flatpak
 
-# Remove other apps
+echo "[INFO] Removing other apps..."
 sudo apt purge -y gnome-characters gnome-font-viewer
 
-# Remove other snaps
+echo "[INFO] Removing other snaps..."
 sudo snap remove --purge firmware-updater snap-store
 
-# Hide shortcuts
+echo "[INFO] Hiding shortcuts..."
 echo Hidden=true | sudo tee -a /usr/share/applications/software-properties-drivers.desktop
+
+echo "[INFO] Done"

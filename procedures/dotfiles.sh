@@ -1,4 +1,6 @@
 #!/bin/bash
 
-# Dotfiles
+echo "[INFO] Linking dotfiles..."
 stow -d dotfiles -t $HOME .
+
+echo "[INFO] Done"
