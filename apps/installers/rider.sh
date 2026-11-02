@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "[INFO] Installing Rider..."
-sudo apt install --classic rider
+sudo snap install --classic rider
 
 echo "[INFO] Increasing inotify watch limit..."
 sudo touch /etc/sysctl.d/idea.conf
