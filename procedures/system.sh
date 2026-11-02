@@ -14,7 +14,7 @@ echo "[INFO] Removing memtest from grub menu..."
 sudo apt purge -y info memtest86+
 
 echo "[INFO] Setting grub menu to 1920x1080..."
-sudo sed -i 's/GRUB_GFXMODE=640x480/GRUB_GFXMODE=1920x1080/' /etc/default/grub
+sudo sed -i 's/^#\?GRUB_GFXMODE=.*/GRUB_GFXMODE=1920x1080/' /etc/default/grub
 sudo update-grub
 
 echo "[INFO] Done"
