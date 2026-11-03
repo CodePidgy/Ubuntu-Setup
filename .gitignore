@@ -1,2 +1,4 @@
 **/.zsh/pure/
 **/.zsh/zinit/
+
+dotfiles/**/.uuid
