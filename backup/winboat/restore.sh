@@ -13,4 +13,7 @@ fi
 echo "[INFO] Extracting archive..."
 tar -I zstd -xSpf "$1" -C $HOME || exit 1
 
+echo "[INFO] Composing container..."
+docker compose -f ~/.winboat/docker-compose.yml up --no-start
+
 echo "[INFO] Done"
