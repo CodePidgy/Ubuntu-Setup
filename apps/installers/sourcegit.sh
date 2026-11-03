@@ -23,6 +23,8 @@ git config --global credential.credentialStore gpg
 echo "[INFO] Installing pass..."
 sudo apt install -y pass
 
+echo "[INFO] Done"
+
 # Manual setup
 # - Copy password for email address
 # > gpg --gen-key

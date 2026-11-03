@@ -7,3 +7,5 @@ sudo apt install -y libinput-tools
 
 echo "[INFO] Adding keyboard-override command..."
 sudo ln -s $HOME/setup/scripts/keyboard-override.sh /usr/local/bin/keyboard-override
+
+echo "[INFO] Done"
