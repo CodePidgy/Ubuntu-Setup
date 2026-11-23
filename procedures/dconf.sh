@@ -1,13 +1,17 @@
 #!/bin/bash
 
 desktop=false
+desktop_work=false
 laptop=false
 work=false
-work_home=false
-work_office=false
 
 if [[ "$1" == "--desktop" ]]; then
     desktop=true
+fi
+
+if [[ "$1" == "--desktop-work" ]]; then
+    desktop=true
+    desktop_work=true
 fi
 
 if [[ "$1" == "--laptop" ]]; then
@@ -16,16 +20,6 @@ fi
 
 if [[ "$1" == "--work" ]]; then
     work=true
-fi
-
-if [[ "$1" == "--work-home" ]]; then
-    work=true
-    work_home=true
-fi
-
-if [[ "$1" == "--work-office" ]]; then
-    work=true
-    work_office=true
 fi
 
 echo "[INFO] Loading dconf settings..."
@@ -38,6 +32,11 @@ if $desktop; then
     dconf load / < dconf/desktop/extensions.ini
 fi
 
+if $desktop_work; then
+    echo "[INFO] Loading desktop work dconf settings..."
+    dconf load / < dconf/desktop/work/extensions.ini
+fi
+
 if $laptop; then
     echo "[INFO] Loading laptop dconf settings..."
     dconf load / < dconf/laptop/system.ini
@@ -48,18 +47,6 @@ if $work; then
     echo "[INFO] Loading work dconf settings..."
     dconf load / < dconf/work/system.ini
     dconf load / < dconf/work/extensions.ini
-fi
-
-if $work_home; then
-    echo "[INFO] Loading work home dconf settings..."
-    dconf load / < dconf/work/home/system.ini
-    dconf load / < dconf/work/home/extensions.ini
-fi
-
-if $work_office; then
-    echo "[INFO] Loading work office dconf settings..."
-    dconf load / < dconf/work/office/system.ini
-    dconf load / < dconf/work/office/extensions.ini
 fi
 
 echo "[INFO] Done"
