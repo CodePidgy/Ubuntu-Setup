@@ -73,6 +73,7 @@ alias nrd="npm run dev"
 alias nrt="npm run test"
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade -y"
+alias work="flatpak run --env=SDL_MOUSE_FOCUS_CLICKTHROUGH=1 com.freerdp.FreeRDP /v:192.168.88.12 /u:aidan@amrod.co.za /dynamic-resolution /gfx:avc444 /multimon /monitors:4,5 /network:lan /sound +clipboard"
 
 # Shell integrations
 [[ -d "${PYENV_ROOT:-}" ]] && eval "$(pyenv init -)"
